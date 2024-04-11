@@ -48,15 +48,15 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,20 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+Based on the defined need of trait implementation, it is not needed to implement an interface because the behaviour of all Subscribers will be the same, thus eliminating the primary need of traits that is to add and differentiate multiple behaviours for Subscribers . If in the future it is intended to implement Subscribers with unique behaviours, then based on the good coding practices learned from before, it is recommended to implement an interface.  
+
+2. id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+The main characteristics of Vec is it's suitable for smaller datasets with a fixed order. Similar to a list it doesn't do much to a dataset with unique identifiers such as keys, so it has a linear look up time due to it needing to iterate through the list.
+On the other hand, DashMaps are similar to dictionary or hashmaps/maps where it's operations are based on the key + value combination of datasets. It has a constant look up time by searching for the unique identifiers of a datum in a dataset. 
+Because id and url is intended to be unique, then it can implement keys for their identifiers, thus making it better or more suitable to use DashMaps for better operation time than a single list/Vec. 
+
+3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread-safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+The advantages of using a Singleton pattern are being able to control access to the shared instance of your data structure, ensuring that only one instance exists throughout the program's lifetime, It also eliminates the need for an external dependency, simplifying your project's dependency graph.
+However, I think using an external library like DashMap is better as it provides a robust and efficient solution for managing data shared data structures in a multithreaded environment. Furthermore, Singleton is needed to ensure that there is only one instance of the SUBSCRIBER instance from DashMap accessed by multiple threads.
 
 #### Reflection Publisher-2
 
