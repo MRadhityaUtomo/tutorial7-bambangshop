@@ -93,5 +93,16 @@ The advantages of using a Singleton pattern are being able to control access to 
 However, I think using an external library like DashMap is better as it provides a robust and efficient solution for managing data shared data structures in a multithreaded environment. Furthermore, Singleton is needed to ensure that there is only one instance of the SUBSCRIBER instance from DashMap accessed by multiple threads.
 
 #### Reflection Publisher-2
+1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+Based on Seperation of Concerns principles, it's more beneficial to further divide layers of a program to increase maintainability, testability, flexibility, and scalability and also covering design principles such as SRP, modularity, and encapsulation. For example, by seperating the "Service" to only operate the business logic and application specific operations, while "Repository" can focus on accessing the database and data manipulation functions, both of these can be tested and implement new features on if needed seperately without having to tweak the other.
+
+2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+If having MVC with model doing the business model is already pretty complex, then having only model doing everything will make the code extremely hard to maintain. Having each module relying eachother in a single layer will drastically increase code complexity and high risk of making it tightly coupled (highly dependent of eachother's components).
+
+3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Postman is an extremely helpful program that helps API data managing in projects. It has simple functions for HTTP requests such as GET, POST, and DELETE to retrive accurate data and test a program's CRUD via URL endpoints. It is also very helpful for importing or exporting collections with an easy to navigate GUI. Not only this project, but it has also helped me on previous projects as well such as Web Development with Django, and it surely help me on future projects too. 
 
 #### Reflection Publisher-3
