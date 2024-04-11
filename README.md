@@ -58,18 +58,18 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -106,3 +106,15 @@ If having MVC with model doing the business model is already pretty complex, the
 Postman is an extremely helpful program that helps API data managing in projects. It has simple functions for HTTP requests such as GET, POST, and DELETE to retrive accurate data and test a program's CRUD via URL endpoints. It is also very helpful for importing or exporting collections with an easy to navigate GUI. Not only this project, but it has also helped me on previous projects as well such as Web Development with Django, and it surely help me on future projects too. 
 
 #### Reflection Publisher-3
+1. Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+In this specific case we are using the Push Model as shown by every time there is a new request sent such as create, delete, or publish on a Product, the NotificationService automatically sends update noitifications to all Subscribers who have subscribed to that product type. 
+
+2. What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+The advantages of using the pull model would be making the subscriber active in requesting data from the publisher, thus making the Subscriber able to take the data whenever the Subscriber wants.
+The drawback of this is making the notification system useless as it is intendeed to be an automated feature to, instead making the Subscriber having to know the structure of the data that they want to withdraw.
+
+3. Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+The notifications will be sent out individually in an order instead, making the process drastically slower with multiple Subscribers. A possibility is to add a queuing system having risk of bottlenecking with high loads.
